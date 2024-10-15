@@ -7,10 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d495f12-e662-44ec-a8e5-7e2314aac904" name="Changes" comment="finaly working framework">
+    <list default="true" id="5d495f12-e662-44ec-a8e5-7e2314aac904" name="Changes" comment="working load and visual">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/bdats_proja/AbstrDoubleList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/bdats_proja/AbstrDoubleList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/bdats_proja/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/bdats_proja/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/bdats_proja/Obec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/bdats_proja/Obec.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/bdats_proja/Obyvatele.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/bdats_proja/Obyvatele.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/me/bdats_proja/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/me/bdats_proja/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +59,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.BDATS_projA.executor": "Run",
+    "Application.BDATS_projA.executor": "Debug",
     "Application.HelloApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -109,7 +110,9 @@
       <workItem from="1728897795961" duration="3139000" />
       <workItem from="1728905168073" duration="6353000" />
       <workItem from="1728912428191" duration="1519000" />
-      <workItem from="1728914297909" duration="2431000" />
+      <workItem from="1728914297909" duration="6749000" />
+      <workItem from="1728930084792" duration="817000" />
+      <workItem from="1728973764291" duration="6998000" />
     </task>
     <task id="LOCAL-00001" summary="finaly working framework">
       <option name="closed" value="true" />
@@ -119,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728911423463</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="working load and visual">
+      <option name="closed" value="true" />
+      <created>1728916841465</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728916841465</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,15 +138,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finaly working framework" />
-    <option name="LAST_COMMIT_MESSAGE" value="finaly working framework" />
+    <MESSAGE value="working load and visual" />
+    <option name="LAST_COMMIT_MESSAGE" value="working load and visual" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/me/bdats_proja/Obyvatele.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/src/main/java/me/bdats_proja/Controller.java</url>
+          <line>190</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

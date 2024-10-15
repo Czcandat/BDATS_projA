@@ -1,23 +1,18 @@
 package me.bdats_proja;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -35,16 +30,18 @@ public class Controller implements Initializable
     }
 
     @FXML
-    private Label Load;
-
-    @FXML
     protected void onLoadButtonClick()
     {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(new Stage());
         int successfullyLoaded = Obyvatele.importData(String.valueOf(file));
         refreshTabs();
+    }
 
+    @FXML
+    protected void onRefreshButtonClick()
+    {
+        refreshTabs();
     }
 
     @FXML
@@ -111,7 +108,87 @@ public class Controller implements Initializable
             ObservableList<Obec> observableList = convertToObservableList(kraje[i+1]);
             tableView.setItems(observableList);
 
+            highlightActiveElement(tableView, kraje[i+1].zpristupniAktualni().data);
+
+
             tab.setContent(tableView);
         }
+    }
+
+
+    private void highlightActiveElement(TableView<Obec> tableView, Obec activeElement)
+    {
+        tableView.setRowFactory(tv -> new TableRow<>()
+        {
+            @Override
+            protected void updateItem(Obec item, boolean empty)
+            {
+                super.updateItem(item, empty);
+                if (item == null || empty)
+                {
+                    setStyle(""); // Reset style for non-data rows
+                }
+                else
+                {
+                    if (item.equals(activeElement))
+                    {
+                        setStyle("-fx-background-color: lightgreen;"); // Highlight active element with a different color
+                    }
+                    else
+                    {
+                        setStyle(""); // Default styling for other rows
+                    }
+                }
+            }
+        });
+    }
+
+    public void onNextButtonClick()
+    {
+        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
+        kraje[selectedIndex+1].zpristupniNaslednika();
+        refreshTabs();
+    }
+
+    public void onPrevButtonClick()
+    {
+        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
+        kraje[selectedIndex+1].zpristupniPredchudce();
+        refreshTabs();
+    }
+
+    public void onRemNextClick()
+    {
+        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
+        kraje[selectedIndex+1].odeberNaslednika();
+        refreshTabs();
+    }
+
+    public void onRemActClick()
+    {
+        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
+        kraje[selectedIndex+1].odeberAktualni();
+        refreshTabs();
+    }
+
+    public void onRemPrevClick()
+    {
+        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
+        kraje[selectedIndex+1].odeberPredchudce();
+        refreshTabs();
+    }
+
+    public void onRemLastClick()
+    {
+        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
+        kraje[selectedIndex+1].odeberPosledni();
+        refreshTabs();
+    }
+
+    public void onRemFirstClick()
+    {
+        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
+        kraje[selectedIndex+1].odeberPrvni();
+        refreshTabs();
     }
 }

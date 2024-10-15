@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="663.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="me.bdats_proja.Controller" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="963.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.bdats_proja.Controller">
    <children>
       <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="533.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -80,7 +80,32 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Button text="Load"  onAction="#onLoadButtonClick"/>
+      <VBox alignment="TOP_CENTER" prefHeight="488.0" prefWidth="377.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button onAction="#onLoadButtonClick" text="Load" />
+                 <Button onAction="#onRefreshButtonClick" text="Refresh" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                 <Button onAction="#onNextButtonClick" text="Next" />
+                 <Button onAction="#onPrevButtonClick" text="Prev" />
+               </children>
+            </HBox>
+            <Label text="Remove" />
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button onAction="#onRemFirstClick" text="First" />
+                  <Button onAction="#onRemLastClick" text="Last" />
+                  <Button onAction="#onRemPrevClick" text="Prev" />
+                  <Button onAction="#onRemActClick" text="Active" />
+                  <Button onAction="#onRemNextClick" text="Next" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

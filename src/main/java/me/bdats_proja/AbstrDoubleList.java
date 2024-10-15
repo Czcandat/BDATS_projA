@@ -125,6 +125,7 @@ public class AbstrDoubleList<T> implements Iterable<T>
     }
 
     // Remove item
+    // TODO last item behaviour
 
     public Node<T> odeberAktualni()
     {
@@ -137,7 +138,10 @@ public class AbstrDoubleList<T> implements Iterable<T>
             first = null;
             return tempA;
         }
-        // TODO fix removing active and first at the same time
+        else if (active == first)
+        {
+            first = first.next;
+        }
         Node<T> tempA = active;
         active.prev.next = active.next;
         active.next.prev = active.prev;
@@ -149,7 +153,9 @@ public class AbstrDoubleList<T> implements Iterable<T>
     {
         if (isEmpty()) return null;
         Node<T> tempA = active;
-        active = first;
+        if (active == first) {tempA = first.next;}
+        else {active = first;}
+        first = first.next;
         Node<T> tempRet = odeberAktualni();
         active = tempA;
         return tempRet;
@@ -228,7 +234,7 @@ public class AbstrDoubleList<T> implements Iterable<T>
     }
 
     // Node class
-    private static class Node<T>
+    public static class Node<T>
     {
         T data;
         Node<T> next;

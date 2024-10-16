@@ -2,6 +2,7 @@ package me.bdats_proja;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import static me.bdats_proja.Controller.kraje;
@@ -50,11 +51,40 @@ public class Obyvatele
         }
         catch (IOException e)
         {
-            e.printStackTrace();
             return -1;
         }
         return count;
 
+    }
+
+
+    public static void exportData() {
+        try (FileWriter writer = new FileWriter("export.csv")) {
+
+            writer.write("Index;Kraj;PSC;Nazev;Muzi;Zeny;Celkem\n");
+
+            for (int i = 1; i < kraje.length; i++) {
+                IAbstrDoubleList<Obec> list = kraje[i];
+                for (Obec obec : list)
+                {
+                    String data = String.format(
+                            "%d;%s;%d;%s;%d;%d;%d\n",
+                            i,
+                            enumKraj.values()[i],
+                            obec.getPsc(),
+                            obec.getName(),
+                            obec.getMuziPocet(),
+                            obec.getZenyPocet(),
+                            obec.getCelkemPocet()
+                    );
+
+                    writer.write(data);
+                }
+            }
+
+        } catch (IOException e) {
+            return;
+        }
     }
 
 

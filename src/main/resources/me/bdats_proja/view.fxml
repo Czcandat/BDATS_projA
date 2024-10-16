@@ -101,6 +101,7 @@
     <VBox alignment="TOP_CENTER" prefHeight="488.0" prefWidth="377.0">
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
             <Button onAction="#onLoadButtonClick" text="Load" />
+         <Button onAction="#onExportClick" text="Export" />
          <Button onAction="#onZrusClick" text="Zrus" />
          <Button onAction="#onAverageClick" text="Prumer" />
          <padding>
@@ -141,21 +142,19 @@
          </padding>
       </HBox>
     </VBox>
-   <VBox alignment="TOP_CENTER" prefHeight="488.0" prefWidth="281.0" spacing="20.0">
-      <children>
-         <Label text="Kraj" />
-         <ChoiceBox fx:id="vlozKraj" prefWidth="150.0" />
-         <Label text="PSC" />
-         <TextField fx:id="vlozPsc" />
-         <Label text="Nazev" />
-         <TextField fx:id="vlozNazev" />
-         <Label text="Muzu" />
-         <TextField fx:id="vlozMuzi" />
-         <Label text="Zen" />
-         <TextField fx:id="vlozZeny" />
-      </children>
-      <padding>
-         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </padding>
-   </VBox>
+    <VBox alignment="TOP_CENTER" prefHeight="488.0" prefWidth="281.0" spacing="20.0">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        </padding>
+        <Label text="Kraj" />
+        <ChoiceBox fx:id="vlozKraj" prefWidth="150.0" />
+        <Label text="PSC" />
+        <TextField fx:id="vlozPsc" />
+        <Label text="Nazev" />
+        <TextField fx:id="vlozNazev" />
+        <Label text="Muzu" />
+        <TextField fx:id="vlozMuzi" />
+        <Label text="Zen" />
+        <TextField fx:id="vlozZeny" />
+    </VBox>
 </HBox>

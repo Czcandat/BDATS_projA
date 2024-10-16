@@ -315,4 +315,9 @@ public class Controller implements Initializable
         Obyvatele.zrus(editKraj.getValue());
         refreshTabs();
     }
+
+    public void onExportClick()
+    {
+        Obyvatele.exportData();
+    }
 }

@@ -5,11 +5,11 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Obec
 {
-    private SimpleIntegerProperty psc;
-    private SimpleStringProperty name;
-    private SimpleIntegerProperty muziPocet;
-    private SimpleIntegerProperty zenyPocet;
-    private SimpleIntegerProperty celkemPocet;
+    private final SimpleIntegerProperty psc;
+    private final SimpleStringProperty name;
+    private final SimpleIntegerProperty muziPocet;
+    private final SimpleIntegerProperty zenyPocet;
+    private final SimpleIntegerProperty celkemPocet;
 
     public Obec(int psc, String name, int muziPocet, int zenyPocet, int celkemPocet) {
         this.psc = new SimpleIntegerProperty(psc);

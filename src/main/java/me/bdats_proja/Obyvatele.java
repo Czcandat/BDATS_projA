@@ -20,8 +20,6 @@ public class Obyvatele
     }
 
 
-    // TODO? using direct conversion(enumKraj to index, maybe switch to enumKraj to index-1 as in task
-    //  (enum=index seems better as 0 == all))
     public static int importData(String path)
     {
         int count = 0;
@@ -60,7 +58,6 @@ public class Obyvatele
     }
 
 
-// TODO test, ask for intended functionality
     public static void vlozObec(Obec obec, enumPosition position, enumKraj kraj)
     {
         if (obec == null) return;
@@ -87,21 +84,17 @@ public class Obyvatele
 
     public static Obec zpristupniObec(enumPosition position, enumKraj kraj)
     {
-        switch (position) {
+        switch (position)
+        {
             case FIRST:
-                if (kraje[kraj.ordinal()].zpristupniPrvni() == null) return null;
                 return kraje[kraj.ordinal()].zpristupniPrvni().data;
             case LAST:
-                if (kraje[kraj.ordinal()].zpristupniPosledni() == null) return null;
                 return kraje[kraj.ordinal()].zpristupniPosledni().data;
             case PREV:
-                if (kraje[kraj.ordinal()].zpristupniPredchudce() == null) return null;
                 return kraje[kraj.ordinal()].zpristupniPredchudce().data;
             case ACTIVE:
-                if (kraje[kraj.ordinal()].zpristupniAktualni() == null) return null;
                 return kraje[kraj.ordinal()].zpristupniAktualni().data;
             case NEXT:
-                if (kraje[kraj.ordinal()].zpristupniNaslednika() == null) return null;
                 return kraje[kraj.ordinal()].zpristupniNaslednika().data;
             case null:
                 return null;
@@ -116,19 +109,14 @@ public class Obyvatele
         switch (position)
         {
             case FIRST:
-                if (kraje[kraj.ordinal()].zpristupniPrvni() == null) return null;
                 return kraje[kraj.ordinal()].odeberPrvni().data;
             case LAST:
-                if (kraje[kraj.ordinal()].zpristupniPosledni() == null) return null;
                 return kraje[kraj.ordinal()].odeberPosledni().data;
             case PREV:
-                if (kraje[kraj.ordinal()].zpristupniPredchudce() == null) return null;
                 return kraje[kraj.ordinal()].odeberPredchudce().data;
             case ACTIVE:
-                if (kraje[kraj.ordinal()].zpristupniAktualni() == null) return null;
                 return kraje[kraj.ordinal()].odeberAktualni().data;
             case NEXT:
-                if (kraje[kraj.ordinal()].zpristupniNaslednika() == null) return null;
                 return kraje[kraj.ordinal()].odeberNaslednika().data;
             case null:
                 return null;
@@ -163,50 +151,25 @@ public class Obyvatele
     }
 
 
-    public static void zobrazObce(enumKraj kraj)
+    public static IAbstrDoubleList<Obec> zobrazObce(enumKraj kraj)
     {
-        if (kraj.ordinal() == 0)
-        {
-            for(enumKraj iter: enumKraj.values())
-            {
-                if (iter.ordinal() == 0) continue;
-                zobrazObce(iter);
-            }
-            return;
-        }
-        for(Obec obec: kraje[kraj.ordinal()])
-        {
-            // TODO some operation of visualization
-            // Temp
-            System.out.println(obec.getName());
-        }
+        return kraje[kraj.ordinal()];
     }
 
 
-    public static void zobrazObceNadPrumer(enumKraj kraj)
+    public static IAbstrDoubleList<Obec> zobrazObceNadPrumer(enumKraj kraj)
     {
         float average = zjistiPrumer(kraj);
-        // TODO kraj == 0 behaviour (ask if average of all regions to all regions, average of each region to each regin..)
-
-        if (kraj.ordinal() == 0)
-        {
-            for (enumKraj iter: enumKraj.values())
-            {
-                if (iter.ordinal() == 0) continue;
-                zobrazObceNadPrumer(iter);
-            }
-        }
+        IAbstrDoubleList<Obec> result = new IAbstrDoubleList<>();
 
         for (Obec obec: kraje[kraj.ordinal()])
         {
-            // TODO ask if >= or >
-            if (obec.getCelkemPocet() >= average)
+            if (obec.getCelkemPocet() > average)
             {
-                // TODO some operation of visualization
-                // Temp
-                System.out.println(obec.getName());
+                result.vlozNaslednika(obec);
             }
         }
+        return result;
     }
 
 

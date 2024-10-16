@@ -3,13 +3,13 @@ package me.bdats_proja;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class AbstrDoubleList<T> implements Iterable<T>
+public class IAbstrDoubleList<T> implements Iterable<T>
 {
     private Node<T> active;
     private Node<T> first;
 
 
-    public AbstrDoubleList()
+    public IAbstrDoubleList()
     {
         this.active = null;
         this.first = null;
@@ -18,10 +18,8 @@ public class AbstrDoubleList<T> implements Iterable<T>
 
     public void zrus()
     {
-        while(!isEmpty())
-        {
-            odeberPrvni();
-        }
+        active = null;
+        first = null;
     }
 
 
@@ -193,6 +191,7 @@ public class AbstrDoubleList<T> implements Iterable<T>
     {
         if (isEmpty()) return null;
         Node<T> tempA = active;
+        if (active == first.prev) {tempA = first;}
         active = first.prev;
         Node<T> tempRet = odeberAktualni();
         active = tempA;

@@ -14,16 +14,18 @@ import java.util.ResourceBundle;
 
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import static me.bdats_proja.Obyvatele.*;
+
 public class Controller implements Initializable
 {
-    public static AbstrDoubleList<Obec> [] kraje = new AbstrDoubleList[15];
+    public static IAbstrDoubleList<Obec>[] kraje = new IAbstrDoubleList[15];
 
 
     public void innitKraje()
     {
         for (int i = 0; i < kraje.length; i++)
         {
-            kraje[i] = new AbstrDoubleList<>();
+            kraje[i] = new IAbstrDoubleList<>();
         }
     }
 
@@ -39,33 +41,58 @@ public class Controller implements Initializable
 
 
     @FXML
-    protected void onRefreshButtonClick()
-    {
-        refreshTabs();
-    }
-
+    private TabPane viewPane;
+    @FXML
+    private TabPane accessPane;
 
     @FXML
-    private TabPane tabPane;
+    private ChoiceBox<Obyvatele.enumKraj> vlozKraj;
+    @FXML
+    private ChoiceBox<Obyvatele.enumKraj> editKraj;
+
+    @FXML
+    private TextField vlozPsc;
+
+    @FXML
+    private TextField vlozNazev;
+
+    @FXML
+    private TextField vlozMuzi;
+
+    @FXML
+    private TextField vlozZeny;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         innitKraje();
-        for (int i = 0; i < tabPane.getTabs().size(); i++)
+        vlozKraj.getItems().addAll(Obyvatele.enumKraj.values());
+        editKraj.getItems().addAll(Obyvatele.enumKraj.values());
+        for (int i = 0; i < viewPane.getTabs().size(); i++)
         {
-            Tab tab = tabPane.getTabs().get(i);
+            Tab tab = viewPane.getTabs().get(i);
             TableView<Obec> tableView = createTableView();
 
-            ObservableList<Obec> observableList = convertToObservableList(kraje[i]);
+            ObservableList<Obec> observableList = convertToObservableList(zobrazObce(Obyvatele.enumKraj.values()[i+1]));
             tableView.setItems(observableList);
 
             tab.setContent(tableView);
         }
+        for (int i = 0; i < accessPane.getTabs().size(); i++)
+        {
+            Tab tab = accessPane.getTabs().get(i);
+            TableView<Obec> tableView = createTableView();
+
+            ObservableList<Obec> observableList = convertToObservableList(zobrazObce(Obyvatele.enumKraj.values()[i+1]));
+            tableView.setItems(observableList);
+
+            tab.setContent(tableView);
+        }
+
     }
 
-    private ObservableList<Obec> convertToObservableList(AbstrDoubleList<Obec> list)
+    private ObservableList<Obec> convertToObservableList(IAbstrDoubleList<Obec> list)
     {
         ObservableList<Obec> observableList = FXCollections.observableArrayList();
         for (Obec obec : list)
@@ -105,11 +132,11 @@ public class Controller implements Initializable
 
     public void refreshTabs()
     {
-        for (int i = 0; i < tabPane.getTabs().size(); i++) {
-            Tab tab = tabPane.getTabs().get(i);
+        for (int i = 0; i < viewPane.getTabs().size(); i++) {
+            Tab tab = viewPane.getTabs().get(i);
             TableView<Obec> tableView = createTableView();
 
-            ObservableList<Obec> observableList = convertToObservableList(kraje[i+1]);
+            ObservableList<Obec> observableList = convertToObservableList(zobrazObce(Obyvatele.enumKraj.values()[i+1]));
             tableView.setItems(observableList);
 
             if (kraje[i+1].zpristupniAktualni() != null)
@@ -152,52 +179,140 @@ public class Controller implements Initializable
 
     public void onNextButtonClick()
     {
-        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
-        kraje[selectedIndex+1].zpristupniNaslednika();
+        if(kraje[viewPane.getSelectionModel().getSelectedIndex()+1].isEmpty()) return;
+        Obyvatele.zpristupniObec(enumPosition.NEXT, enumKraj.values()[viewPane.getSelectionModel().getSelectedIndex()+1]);
         refreshTabs();
     }
 
 
     public void onPrevButtonClick()
     {
-        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
-        kraje[selectedIndex+1].zpristupniPredchudce();
+        if(kraje[viewPane.getSelectionModel().getSelectedIndex()+1].isEmpty()) return;
+        Obyvatele.zpristupniObec(enumPosition.PREV, enumKraj.values()[viewPane.getSelectionModel().getSelectedIndex()+1]);
+        refreshTabs();
+    }
+
+    public void onFirstButtonClick()
+    {
+        if(kraje[viewPane.getSelectionModel().getSelectedIndex()+1].isEmpty()) return;
+        Obyvatele.zpristupniObec(enumPosition.FIRST, enumKraj.values()[viewPane.getSelectionModel().getSelectedIndex()+1]);
+        refreshTabs();
+    }
+
+
+    public void onLastButtonClick()
+    {
+        if(kraje[viewPane.getSelectionModel().getSelectedIndex()+1].isEmpty()) return;
+        Obyvatele.zpristupniObec(enumPosition.LAST, enumKraj.values()[viewPane.getSelectionModel().getSelectedIndex()+1]);
         refreshTabs();
     }
 
 
     public void onRemNextClick()
     {
-        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
-        kraje[selectedIndex+1].odeberNaslednika();
+        if(kraje[viewPane.getSelectionModel().getSelectedIndex()+1].isEmpty()) return;
+        Obyvatele.odeberObec(enumPosition.NEXT, enumKraj.values()[viewPane.getSelectionModel().getSelectedIndex()+1]);
         refreshTabs();
     }
 
+
     public void onRemActClick()
     {
-        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
-        kraje[selectedIndex+1].odeberAktualni();
+        if(kraje[viewPane.getSelectionModel().getSelectedIndex()+1].isEmpty()) return;
+        Obyvatele.odeberObec(enumPosition.ACTIVE, enumKraj.values()[viewPane.getSelectionModel().getSelectedIndex()+1]);
         refreshTabs();
     }
 
     public void onRemPrevClick()
     {
-        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
-        kraje[selectedIndex+1].odeberPredchudce();
+        if(kraje[viewPane.getSelectionModel().getSelectedIndex()+1].isEmpty()) return;
+        Obyvatele.odeberObec(enumPosition.PREV, enumKraj.values()[viewPane.getSelectionModel().getSelectedIndex()+1]);
         refreshTabs();
     }
 
     public void onRemLastClick()
     {
-        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
-        kraje[selectedIndex+1].odeberPosledni();
+        if(kraje[viewPane.getSelectionModel().getSelectedIndex()+1].isEmpty()) return;
+        Obyvatele.odeberObec(enumPosition.LAST, enumKraj.values()[viewPane.getSelectionModel().getSelectedIndex()+1]);
         refreshTabs();
     }
 
     public void onRemFirstClick()
     {
-        int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
-        kraje[selectedIndex+1].odeberPrvni();
+        if(kraje[viewPane.getSelectionModel().getSelectedIndex()+1].isEmpty()) return;
+        Obyvatele.odeberObec(enumPosition.FIRST, enumKraj.values()[viewPane.getSelectionModel().getSelectedIndex()+1]);
+        refreshTabs();
+    }
+
+    private Obec newObec()
+    {
+        int psc = Integer.parseInt(vlozPsc.getText());
+        int muzi = Integer.parseInt(vlozMuzi.getText());
+        int zeny = Integer.parseInt(vlozZeny.getText());
+        int celkem = muzi+zeny;
+        return new Obec(psc, vlozNazev.getText(), muzi, zeny, celkem);
+    }
+
+
+    public void onAddFirstClick()
+    {
+        Obyvatele.vlozObec(newObec(), enumPosition.FIRST, vlozKraj.getValue());
+        refreshTabs();
+    }
+
+    public void onAddLastClick()
+    {
+        Obyvatele.vlozObec(newObec(), enumPosition.LAST, vlozKraj.getValue());
+        refreshTabs();
+    }
+
+    public void onAddPrevClick()
+    {
+        Obyvatele.vlozObec(newObec(), enumPosition.PREV, vlozKraj.getValue());
+        refreshTabs();
+    }
+
+    public void onAddNextClick()
+    {
+        Obyvatele.vlozObec(newObec(), enumPosition.NEXT, vlozKraj.getValue());
+        refreshTabs();
+    }
+
+    public void onAverageClick()
+    {
+
+        if (editKraj.getValue() == null) return;
+        else if(editKraj.getValue() == Obyvatele.enumKraj.ALL)
+        {
+            for(enumKraj iter: enumKraj.values())
+            {
+                if(iter == Obyvatele.enumKraj.ALL)
+                {
+                    continue;
+                }
+
+                Tab tab = accessPane.getTabs().get(iter.ordinal()-1);
+                TableView<Obec> tableView = createTableView();
+
+                ObservableList<Obec> observableList = convertToObservableList(Obyvatele.zobrazObceNadPrumer(iter));
+                tableView.setItems(observableList);
+
+                tab.setContent(tableView);
+            }
+            return;
+        }
+        Tab tab = accessPane.getTabs().get(editKraj.getValue().ordinal()-1);
+        TableView<Obec> tableView = createTableView();
+
+        ObservableList<Obec> observableList = convertToObservableList(Obyvatele.zobrazObceNadPrumer(editKraj.getValue()));
+        tableView.setItems(observableList);
+
+        tab.setContent(tableView);
+    }
+
+    public void onZrusClick()
+    {
+        Obyvatele.zrus(editKraj.getValue());
         refreshTabs();
     }
 }

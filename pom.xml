@@ -58,7 +58,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>me.bdats_proja/me.bdats_proja.HelloApplication</mainClass>
+              <mainClass>me.bdats_proja/me.bdats_proja.ProgObyvatele</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

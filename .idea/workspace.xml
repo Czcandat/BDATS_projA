@@ -7,12 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d495f12-e662-44ec-a8e5-7e2314aac904" name="Changes" comment="working load and visual">
+    <list default="true" id="5d495f12-e662-44ec-a8e5-7e2314aac904" name="Changes" comment="finished base Obyvatele framework">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/me/bdats_proja/view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/bdats_proja/AbstrDoubleList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/bdats_proja/AbstrDoubleList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/bdats_proja/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/bdats_proja/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/bdats_proja/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/bdats_proja/ProgObyvatele.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/bdats_proja/Obyvatele.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/bdats_proja/Obyvatele.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/me/bdats_proja/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/me/bdats_proja/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/me/bdats_proja/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +52,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -59,7 +66,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.BDATS_projA.executor": "Debug",
+    "Application.BDATS_projA.executor": "Run",
     "Application.HelloApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -74,13 +81,13 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
     <configuration name="BDATS_projA" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="me.bdats_proja.HelloApplication" />
+      <option name="MAIN_CLASS_NAME" value="me.bdats_proja.ProgObyvatele" />
       <module name="BDATS_projA" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -112,7 +119,8 @@
       <workItem from="1728912428191" duration="1519000" />
       <workItem from="1728914297909" duration="6749000" />
       <workItem from="1728930084792" duration="817000" />
-      <workItem from="1728973764291" duration="6998000" />
+      <workItem from="1728973764291" duration="7926000" />
+      <workItem from="1728984518024" duration="7845000" />
     </task>
     <task id="LOCAL-00001" summary="finaly working framework">
       <option name="closed" value="true" />
@@ -130,26 +138,57 @@
       <option name="project" value="LOCAL" />
       <updated>1728916841465</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixed first==active TODO">
+      <option name="closed" value="true" />
+      <created>1728983753558</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728983753558</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added controls and active element highlighting">
+      <option name="closed" value="true" />
+      <created>1728983875531</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728983875531</updated>
+    </task>
+    <task id="LOCAL-00005" summary="finished base Obyvatele framework">
+      <option name="closed" value="true" />
+      <created>1728983942494</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728983942494</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finaly working framework" />
     <MESSAGE value="working load and visual" />
-    <option name="LAST_COMMIT_MESSAGE" value="working load and visual" />
+    <MESSAGE value="fixed first==active TODO" />
+    <MESSAGE value="added controls and active element highlighting" />
+    <MESSAGE value="finished base Obyvatele framework" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished base Obyvatele framework" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/me/bdats_proja/Controller.java</url>
-          <line>190</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

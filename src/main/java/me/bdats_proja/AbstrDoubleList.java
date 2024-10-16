@@ -8,11 +8,13 @@ public class AbstrDoubleList<T> implements Iterable<T>
     private Node<T> active;
     private Node<T> first;
 
+
     public AbstrDoubleList()
     {
         this.active = null;
         this.first = null;
     }
+
 
     public void zrus()
     {
@@ -22,15 +24,18 @@ public class AbstrDoubleList<T> implements Iterable<T>
         }
     }
 
+
     public boolean isEmpty()
     {
         return first == null;
     }
 
-    // Insert item
 
+    // Insert item
     public void vlozPrvni(T data)
     {
+        if (data == null) return;
+
         if(isEmpty())
         {
             vlozNaslednika(data);
@@ -45,8 +50,11 @@ public class AbstrDoubleList<T> implements Iterable<T>
         first = tempF.prev;
     }
 
+
     public void vlozPosledni(T data)
     {
+        if (data == null) return;
+
         if(isEmpty())
         {
             vlozNaslednika(data);
@@ -59,8 +67,11 @@ public class AbstrDoubleList<T> implements Iterable<T>
         active = tempA;
     }
 
+
     public void vlozNaslednika(T data)
     {
+        if (data == null) return;
+
         Node<T> newNode = new Node<>(data);
 
         if (isEmpty())
@@ -78,8 +89,11 @@ public class AbstrDoubleList<T> implements Iterable<T>
         active.next = newNode;
     }
 
+
     public void vlozPredchudce(T data)
     {
+        if (data == null) return;
+
         if (isEmpty())
         {
             vlozNaslednika(data);
@@ -92,41 +106,53 @@ public class AbstrDoubleList<T> implements Iterable<T>
         active = temp;
     }
 
-    // Access item
-    // TODO empty list behaviour
 
+    // Access item
     public Node<T> zpristupniAktualni()
     {
+        if (active == null) return null;
         return active;
     }
 
+
     public Node<T> zpristupniPrvni()
     {
+        if (active == null) return null;
+
         active = first;
         return active;
     }
 
+
     public Node<T> zpristupniPosledni()
     {
+        if (active == null) return null;
+
         active = first.prev;
         return active;
+
     }
+
 
     public Node<T> zpristupniNaslednika()
     {
+        if (active == null) return null;
+
         active = active.next;
         return active;
+
     }
+
 
     public Node<T> zpristupniPredchudce()
     {
+        if (active == null) return null;
         active = active.prev;
         return active;
     }
 
-    // Remove item
-    // TODO last item behaviour
 
+    // Remove item
     public Node<T> odeberAktualni()
     {
         // do first logic
@@ -136,6 +162,8 @@ public class AbstrDoubleList<T> implements Iterable<T>
             Node<T> tempA = active;
             active = null;
             first = null;
+            tempA.next = null;
+            tempA.prev = null;
             return tempA;
         }
         else if (active == first)
